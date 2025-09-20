@@ -6,15 +6,22 @@
     <link rel="stylesheet" href="/styles/main.css">
     <title>Cocktail Compendium</title>
 </head>
-<nav>
-    <a href="/">Home</a>
-    <a href="/search">Search</a>
-</nav>
-<body>
+<div class="header">
     <h1>The Cocktail Compendium</h1>
-    <h2>Your searched cocktials will appear below!</h2>
-    <h3>To search a cocktail recipe, go to the search page!</h3>
-    
+    <nav>
+        <a href="/">Home</a>
+        <a href="/search">Search</a>
+    </nav>
+</div>
+
+<div class="main-content">
+<body>
+    <div class="intro">
+        <h2>Your cocktial search results will appear below!</h2>
+        <h3>To search a cocktail recipe, go to the search page</h3>
+    </div>
+    <hr><br>
+
     <div class="response-area">
         <% if (content && content.drinks) { %>
             <% content.drinks.forEach(drink => { %>
@@ -33,7 +40,7 @@
 
                     <h3>Instructions:</h3>
                     <p><%= drink.strInstructions %></p>
-                    <hr />
+                    <hr>
                 </div>
             <% }) %>
         <% } else { %>
@@ -43,4 +50,5 @@
     </div>
 
 </body>
+</div>
 </html>
