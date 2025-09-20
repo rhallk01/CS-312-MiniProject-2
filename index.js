@@ -24,3 +24,10 @@ app.get("/search", (req, res) => {
 app.get("/clickHome", (req, res) => {
   return res.redirect('/');
 });
+
+
+
+//start the Express server
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
