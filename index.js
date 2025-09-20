@@ -36,6 +36,24 @@ app.get("/get-cocktail-by-name", async (req, res) => {
   }
 });
 
+app.get("/get-cocktail-by-letter", async (req, res) => {
+  const cocktailLetter = req.query.firstLetterInput;
+  try {
+    const result = await axios.get(API_URL + "/search.php?f=" + cocktailLetter);
+    res.render("index.ejs", { content: result.data });
+  } catch (error) {
+    res.render("index.ejs", { content: JSON.stringify(error) });
+  }
+});
+
+app.get("/get-cocktail-random", async (req, res) => {
+  try {
+    const result = await axios.get(API_URL + "/random.php");
+    res.render("index.ejs", { content: result.data });
+  } catch (error) {
+    res.render("index.ejs", { content: JSON.stringify(error) });
+  }
+});
 
 
 
