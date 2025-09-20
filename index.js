@@ -9,11 +9,11 @@ const port = 3000;
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const API_URL = "www.thecocktaildb.com/api/json/v1/1";
+const API_URL = "https://www.thecocktaildb.com/api/json/v1/1";
 
 //render home page render
 app.get("/", (req, res) => {
-  res.render("index.ejs", {});
+  res.render("index.ejs", {content: ""});
 });
 
 //render search cocktails page
@@ -26,18 +26,15 @@ app.get("/clickHome", (req, res) => {
   return res.redirect('/');
 });
 
-app.post("/get-cocktail-by-name", async (req, res) => {
-  const cocktailName = req.body.id;
+app.get("/get-cocktail-by-name", async (req, res) => {
+  const cocktailName = req.query.nameInput;
   try {
-    const result = await axios.get(API_URL + "/search.php?s=" + cocktailName, config);
-    console.log(result.data);
+    const result = await axios.get(API_URL + "/search.php?s=" + cocktailName);
     res.render("index.ejs", { content: JSON.stringify(result.data) });
   } catch (error) {
-    res.render("index.ejs", { content: JSON.stringify(error.response.data) });
+    res.render("index.ejs", { content: JSON.stringify(error) });
   }
 });
-
-
 
 
 

@@ -13,10 +13,12 @@
     <h1>The Cocktail Compendium</h1>
     <h2>Your searched cocktials will appear below!</h2>
     <h3>To search a cocktail recipe, go to the search page!</h3>
-    <div class="response-area">
-      <p>
-        <%= content %>
-      </p>
-    </div>
+    <% if (content != null) {%>
+        <div class="response-area">
+        <p>
+            <%= content %>
+        </p>
+        </div>
+    <% } %>
 </body>
 </html>
