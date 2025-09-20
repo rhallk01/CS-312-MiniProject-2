@@ -10,6 +10,40 @@
     <a href="/search">Search</a>
 </nav>
 <body>
-    <h1>The Cocktail <Search></Search></h1>
+    <h1>The Cocktail Search</h1>
+  <div class="container">
+    <div class="response-area">
+      <p>
+        <%= content %>
+      </p>
+    </div>
+    <form class="getCocktailForm" method="get">
+      <label for="nameInput">Cocktail Name:</label>
+      <input type="text" id="nameInput" name="nameInput">
+
+      <label for="submit">Search:</label>
+      <input id="get" type="submit" value="GET" formaction="/get-cocktail-by-name">
+    </form>
+
+    <form class="getCocktailForm" method="get">
+      <label for="firstLetterInput">First Letter:</label>
+      <input type="text" id="firstLetterInput" name="firstLetterInput">
+
+      <label for="submit">Search:</label>
+      <input id="get" type="submit" value="GET" formaction="/get-cocktail-by-letter">
+
+    </form>
+
+    <form class="getCocktailForm" method="get">
+      <label for="randomInput">Get Random Cocktail:</label>
+      <input type="text" id="randomInput" name="randomInput">
+
+      <label for="submit">Search:</label>
+      <input id="get" type="submit" value="GET" formaction="/get-cocktail-random">
+    </form>
+
+  </div>
+
+
 </body>
 </html>
