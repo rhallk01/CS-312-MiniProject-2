@@ -30,7 +30,7 @@ app.get("/get-cocktail-by-name", async (req, res) => {
   const cocktailName = req.query.nameInput;
   try {
     const result = await axios.get(API_URL + "/search.php?s=" + cocktailName);
-    res.render("index.ejs", { content: JSON.stringify(result.data) });
+    res.render("index.ejs", { content: result.data });
   } catch (error) {
     res.render("index.ejs", { content: JSON.stringify(error) });
   }

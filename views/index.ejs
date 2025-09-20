@@ -13,12 +13,33 @@
     <h1>The Cocktail Compendium</h1>
     <h2>Your searched cocktials will appear below!</h2>
     <h3>To search a cocktail recipe, go to the search page!</h3>
-    <% if (content != null) {%>
-        <div class="response-area">
-        <p>
-            <%= content %>
-        </p>
-        </div>
-    <% } %>
+    
+    <div class="response-area">
+        <% if (content && content.drinks) { %>
+            <% content.drinks.forEach(drink => { %>
+                <div class="cocktail-card">
+                    <h2><%= drink.strDrink %></h2>
+
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        <% for (let i = 1; i <= 15; i++) {
+                            const ingredient = drink[`strIngredient${i}`];
+                            const measure = drink[`strMeasure${i}`];
+                            if (ingredient) { %>
+                        <li><%= measure ? measure.trim() : '' %> <%= ingredient %></li>
+                        <% }} %>
+                    </ul>
+
+                    <h3>Instructions:</h3>
+                    <p><%= drink.strInstructions %></p>
+                    <hr />
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>No results found.</p>
+        <% } %>
+
+    </div>
+
 </body>
 </html>
