@@ -10,6 +10,9 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const API_URL = "https://www.thecocktaildb.com/api/json/v1/1";
+const RECIPE_API_URL = "https://www.themealdb.com/api/json/v1/1"
+var currentCocktail;
+var currentRecipe;
 
 //render home page render
 app.get("/", (req, res) => {
@@ -30,9 +33,10 @@ app.get("/get-cocktail-by-name", async (req, res) => {
   const cocktailName = req.query.nameInput;
   try {
     const result = await axios.get(API_URL + "/search.php?s=" + cocktailName);
-    res.render("index.ejs", { content: result.data });
+    currentCocktail = result.data;
+    res.render("index.ejs", { content: result.data, recipe: currentRecipe });
   } catch (error) {
-    res.render("index.ejs", { content: JSON.stringify(error) });
+    res.render("index.ejs", { content: JSON.stringify(error), recipe: currentRecipe });
   }
 });
 
@@ -40,23 +44,55 @@ app.get("/get-cocktail-by-letter", async (req, res) => {
   const cocktailLetter = req.query.firstLetterInput;
   try {
     const result = await axios.get(API_URL + "/search.php?f=" + cocktailLetter);
-    res.render("index.ejs", { content: result.data });
+    currentCocktail = result.data;
+    res.render("index.ejs", { content: result.data, recipe: currentRecipe });
   } catch (error) {
-    res.render("index.ejs", { content: JSON.stringify(error) });
+    res.render("index.ejs", { content: JSON.stringify(error), recipe: currentRecipe });
   }
 });
 
 app.get("/get-cocktail-random", async (req, res) => {
   try {
     const result = await axios.get(API_URL + "/random.php");
-    res.render("index.ejs", { content: result.data });
+    currentCocktail = result.data;
+    res.render("index.ejs", { content: result.data, recipe: currentRecipe });
   } catch (error) {
-    res.render("index.ejs", { content: JSON.stringify(error) });
+    res.render("index.ejs", { content: JSON.stringify(error), recipe: currentRecipe });
   }
 });
 
 
+app.get("/get-recipe-by-name", async (req, res) => {
+  const recipeName = req.query.nameInput;
+  try {
+    const result = await axios.get(RECIPE_API_URL + "/search.php?s=" + recipeName);
+    currentRecipe = result.data;
+    res.render("index.ejs", { recipe: result.data, content: currentCocktail });
+  } catch (error) {
+    res.render("index.ejs", { recipe: JSON.stringify(error), content: currentCocktail });
+  }
+});
 
+app.get("/get-recipe-by-letter", async (req, res) => {
+  const recipeLetter = req.query.firstLetterInputRecipe;
+  try {
+    const result = await axios.get(RECIPE_API_URL + "/search.php?f=" + recipeLetter);
+    currentRecipe = result.data;
+    res.render("index.ejs", { recipe: result.data, content: currentCocktail });
+  } catch (error) {
+    res.render("index.ejs", { recipe: JSON.stringify(error), content: currentCocktail });
+  }
+});
+
+app.get("/get-recipe-random", async (req, res) => {
+  try {
+    const result = await axios.get(RECIPE_API_URL + "/random.php");
+    currentRecipe = result.data;
+    res.render("index.ejs", { recipe: result.data, content: currentCocktail });
+  } catch (error) {
+    res.render("index.ejs", { recipe: JSON.stringify(error), content: currentCocktail });
+  }
+});
 
 
 

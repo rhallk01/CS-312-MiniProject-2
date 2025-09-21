@@ -7,7 +7,7 @@
     <title>Cocktail Search</title>
 </head>
 <div class="header">
-    <h1 class="page-title">The Cocktail Search</h1>
+    <h1 class="page-title">The Cocktail & Cooking Search</h1>
     <nav>
         <a href="/">Home</a>
         <a href="/search">Search</a>
@@ -15,6 +15,7 @@
 </div>
 <div class="main-content">
 <body>
+  <h2>Cocktails</h2>
   <div class="input-boxes">
     <form class="getCocktailForm" method="get">
       <label for="nameInput">Cocktail Name:</label>
@@ -35,6 +36,25 @@
     </form>
 
   </div>
+
+  <h2>Recipes</h2>
+  <div class="input-boxes">
+    <form class="getRecipeFood" method="get">Recipe Name:</label>
+      <input type="text" id="nameInput" name="nameInput">
+      <input id="get" type="submit" value="Search" formaction="/get-recipe-by-name">
+    </form>
+
+    <form class="getRecipeForm" method="get">Recipe First Letter:</label>
+      <input type="text" id="firstLetterInputFood" name="firstLetterInputFood">
+      <input id="get" type="submit" value="Search" formaction="/get-recipe-by-letter">
+    </form>
+
+    <form class="getRecipeForm" method="get">Get Random Recipe:</label>
+      <input id="get" type="submit" value="Search" formaction="/get-recipe-random">
+    </form>
+
+  </div>
+
 </body>
 </div>
 
