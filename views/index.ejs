@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/styles/main.css">
     <title>Cocktail Compendium</title>
 </head>
+
+<body>
 <div class="header">
     <h1 class="page-title">The Cocktail & Cooking Compendium</h1>
     <nav>
@@ -13,75 +15,71 @@
         <a href="/search">Search</a>
     </nav>
 </div>
-
 <div class="main-content">
-<body>
-    <div class="intro">
-        <h2>Your cocktail search results will appear below!</h2>
-        <h3>To search a cocktail recipe, go to the search page</h3>
+    <div class="results-container">
+        <div class="response-area">
+            <div class="intro">
+                <h2>Your cocktail search results will appear below!</h2>
+                <h3>To search a cocktail recipe, go to the search page</h3>
+            </div>
+            <hr><br>
+            <% if (content && content.drinks && content.drinks!="no data found") { %>
+                <% content.drinks.forEach(drink => { %>
+                    <div class="cocktail-card">
+                        <h2><%= drink.strDrink %></h2>
+
+                        <h3>Ingredients:</h3>
+                        <ul>
+                            <% for (let i = 1; i <= 15; i++) {
+                                const ingredient = drink[`strIngredient${i}`];
+                                const measure = drink[`strMeasure${i}`];
+                                if (ingredient) { %>
+                            <li><%= measure ? measure.trim() : '' %> <%= ingredient %></li>
+                            <% }} %>
+                        </ul>
+
+                        <h3>Instructions:</h3>
+                        <p><%= drink.strInstructions %></p>
+                        <hr>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No cocktail results found, please try another search!</p>
+            <% } %>
+
+        </div>
+
+        <div class="response-area">
+            <div class="intro">
+                <h2>Your meal recipe search results will appear below!</h2>
+                <h3>To search a recipe, go to the search page</h3>
+            </div>
+            <hr><br>
+                <% if (recipe && recipe.meals && recipe.meals!="no data found") { %>
+                    <% recipe.meals.forEach(meal => { %>
+                        <div class="cocktail-card">
+                            <h2><%= meal.strMeal %></h2>
+
+                            <h3>Ingredients:</h3>
+                            <ul>
+                                <% for (let i = 1; i <= 15; i++) {
+                                    const ingredient = meal[`strIngredient${i}`];
+                                    const measure = meal[`strMeasure${i}`];
+                                    if (ingredient) { %>
+                                <li><%= measure ? measure.trim() : '' %> <%= ingredient %></li>
+                                <% }} %>
+                            </ul>
+
+                            <h3>Instructions:</h3>
+                            <p><%= meal.strInstructions %></p>
+                            <hr>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p>No recipe results found, please try another search!</p>
+                <% } %>
+        </div>   
     </div>
-    <hr><br>
-
-    <div class="response-area">
-        <% if (content && content.drinks) { %>
-            <% content.drinks.forEach(drink => { %>
-                <div class="cocktail-card">
-                    <h2><%= drink.strDrink %></h2>
-
-                    <h3>Ingredients:</h3>
-                    <ul>
-                        <% for (let i = 1; i <= 15; i++) {
-                            const ingredient = drink[`strIngredient${i}`];
-                            const measure = drink[`strMeasure${i}`];
-                            if (ingredient) { %>
-                        <li><%= measure ? measure.trim() : '' %> <%= ingredient %></li>
-                        <% }} %>
-                    </ul>
-
-                    <h3>Instructions:</h3>
-                    <p><%= drink.strInstructions %></p>
-                    <hr>
-                </div>
-            <% }) %>
-        <% } else { %>
-            <p>No cocktail results found, please try another search!</p>
-        <% } %>
-
-    </div>
-    
-    <br>
-    <div class="intro">
-        <h2>Your meal recipe search results will appear below!</h2>
-        <h3>To search a recipe, go to the search page</h3>
-    </div>
-    <hr><br>
-
-    <div class="response-area">
-        <% if (recipe && recipe.meals) { %>
-            <% recipe.meals.forEach(meal => { %>
-                <div class="cocktail-card">
-                    <h2><%= meal.strMeal %></h2>
-
-                    <h3>Ingredients:</h3>
-                    <ul>
-                        <% for (let i = 1; i <= 15; i++) {
-                            const ingredient = meal[`strIngredient${i}`];
-                            const measure = meal[`strMeasure${i}`];
-                            if (ingredient) { %>
-                        <li><%= measure ? measure.trim() : '' %> <%= ingredient %></li>
-                        <% }} %>
-                    </ul>
-
-                    <h3>Instructions:</h3>
-                    <p><%= meal.strInstructions %></p>
-                    <hr>
-                </div>
-            <% }) %>
-        <% } else { %>
-            <p>No recipe results found, please try another search!</p>
-        <% } %>
-
-    </div>    
-</body>
 </div>
+</body>
 </html>

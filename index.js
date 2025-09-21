@@ -11,12 +11,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const API_URL = "https://www.thecocktaildb.com/api/json/v1/1";
 const RECIPE_API_URL = "https://www.themealdb.com/api/json/v1/1"
-var currentCocktail;
-var currentRecipe;
+var currentCocktail = "";
+var currentRecipe = "";
 
 //render home page render
 app.get("/", (req, res) => {
-  res.render("index.ejs", {content: ""});
+  res.render("index.ejs", {content: currentCocktail, recipe: currentRecipe});
 });
 
 //render search cocktails page
@@ -69,18 +69,18 @@ app.get("/get-recipe-by-name", async (req, res) => {
     currentRecipe = result.data;
     res.render("index.ejs", { recipe: result.data, content: currentCocktail });
   } catch (error) {
-    res.render("index.ejs", { recipe: JSON.stringify(error), content: currentCocktail });
+    res.render("index.ejs", { recipe: "", content: currentCocktail });
   }
 });
 
 app.get("/get-recipe-by-letter", async (req, res) => {
-  const recipeLetter = req.query.firstLetterInputRecipe;
+  const recipeLetter = req.query.firstLetterInputFood;
   try {
     const result = await axios.get(RECIPE_API_URL + "/search.php?f=" + recipeLetter);
     currentRecipe = result.data;
     res.render("index.ejs", { recipe: result.data, content: currentCocktail });
   } catch (error) {
-    res.render("index.ejs", { recipe: JSON.stringify(error), content: currentCocktail });
+    res.render("index.ejs", { recipe: "", content: currentCocktail });
   }
 });
 
@@ -90,7 +90,7 @@ app.get("/get-recipe-random", async (req, res) => {
     currentRecipe = result.data;
     res.render("index.ejs", { recipe: result.data, content: currentCocktail });
   } catch (error) {
-    res.render("index.ejs", { recipe: JSON.stringify(error), content: currentCocktail });
+    res.render("index.ejs", { recipe: "", content: currentCocktail });
   }
 });
 
