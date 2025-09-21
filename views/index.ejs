@@ -41,22 +41,22 @@
                         <h3>Ingredients:</h3>
                         <ul>
                             <% for (let i = 1; i <= 15; i++) {
-                                //get the ingredient
+                                <%#get the ingredient %>
                                 const ingredient = drink[`strIngredient${i}`];
-                                //get the amount
+                                <%#get the amount%>
                                 const measure = drink[`strMeasure${i}`];
-                                //if ingredient exists, show cleaned measure (if it exists) and ingredient
+                                <%#if ingredient exists, show cleaned measure (if it exists) and ingredient%>
                                 if (ingredient) { %>
                             <li><%= measure ? measure.trim() : '' %> <%= ingredient %></li>
                             <% }} %>
                         </ul>
-                        //show instructions
+                        <%#show instructions%>
                         <h3>Instructions:</h3>
                         <p><%= drink.strInstructions %></p>
                         <hr>
                     </div>
                 <% }) %>
-            //if drinks data doesnt exist or is "no data found", show no results found and prompt another search
+            <%#if drinks data doesnt exist or is "no data found", show no results found and prompt another search%>
             <% } else { %>
                 <p>No cocktail results found, please try another search!</p>
             <% } %>
@@ -83,23 +83,23 @@
                             <h3>Ingredients:</h3>
                             <ul>
                                 <% for (let i = 1; i <= 15; i++) {
-                                    //get the ingredient
+                                    <%#get the ingredient%>
                                     const ingredient = meal[`strIngredient${i}`];
-                                    //get the amount
+                                    <%#get the amount%>
                                     const measure = meal[`strMeasure${i}`];
-                                    //if ingredient exists, show cleaned measure (if it exists) and ingredient
+                                    <%#if ingredient exists, show cleaned measure (if it exists) and ingredient%>
                                     if (ingredient) { %>
                                 <li><%= measure ? measure.trim() : '' %> <%= ingredient %></li>
                                 <% }} %>
                             </ul>
 
-                            //show instructions
+                            <%#show instructions%>
                             <h3>Instructions:</h3>
                             <p><%= meal.strInstructions %></p>
                             <hr>
                         </div>
                     <% }) %>
-                //if meals data doesnt exist or is "no data found", show no results found and prompt another search
+                <%#if meals data doesnt exist or is "no data found", show no results found and prompt another search%>
                 <% } else { %>
                     <p>No recipe results found, please try another search!</p>
                 <% } %>
