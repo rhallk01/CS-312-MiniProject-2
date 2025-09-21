@@ -3,61 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- import stylesheet -->
     <link rel="stylesheet" href="/styles/main.css">
     <title>Cocktail Search</title>
 </head>
-<div class="header">
-    <h1 class="page-title">The Cocktail & Cooking Search</h1>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/search">Search</a>
-    </nav>
-</div>
-<div class="main-content">
+
 <body>
-<div class="search-container">
-  <div class="input-boxes">
-  <h2>Cocktails</h2>
-    <form class="getCocktailForm" method="get">
-      <label for="nameInput">Cocktail Name:</label>
-      <input type="text" id="nameInput" name="nameInput">
-      <input id="get" type="submit" value="Search" formaction="/get-cocktail-by-name">
-    </form>
-
-    <form class="getCocktailForm" method="get">
-      <label for="firstLetterInput">First Letter:</label>
-      <input type="text" id="firstLetterInput" name="firstLetterInput">
-      <input id="get" type="submit" value="Search" formaction="/get-cocktail-by-letter">
-
-    </form>
-
-    <form class="getCocktailForm" method="get">
-      <label for="randomInput">Get Random Cocktail:</label>
-      <input id="get" type="submit" value="Search" formaction="/get-cocktail-random">
-    </form>
-
+  <!-- header with title and navigation -->
+  <div class="header">
+      <h1 class="page-title">The Cocktail & Cooking Search</h1>
+      <nav>
+          <a href="/">Home</a>
+          <a href="/search">Search</a>
+      </nav>
   </div>
 
-  
-  <div class="input-boxes">
-  <h2>Meals</h2>
-    <form class="getRecipeFood" method="get">Meal Name:</label>
-      <input type="text" id="nameInput" name="nameInput">
-      <input id="get" type="submit" value="Search" formaction="/get-recipe-by-name">
-    </form>
+  <!-- area with search prompts -->
+  <div class="main-content">
+    <div class="search-container">
 
-    <form class="getRecipeForm" method="get">Meal First Letter:</label>
-      <input type="text" id="firstLetterInputFood" name="firstLetterInputFood">
-      <input id="get" type="submit" value="Search" formaction="/get-recipe-by-letter">
-    </form>
+      <!-- Cocktail area -->
+      <div class="input-boxes">
+      <h2>Cocktails</h2>
 
-    <form class="getRecipeForm" method="get">Get Random Meal:</label>
-      <input id="get" type="submit" value="Search" formaction="/get-recipe-random">
-    </form>
+        <!-- Search by name -->
+        <form class="getCocktailForm" method="get">
+          <label for="nameInput">Cocktail Name:</label>
+          <input type="text" id="nameInput" name="nameInput">
+          <input id="get" type="submit" value="Search" formaction="/get-cocktail-by-name">
+        </form>
 
+        <!-- Search by first letter -->
+        <form class="getCocktailForm" method="get">
+          <label for="firstLetterInput">First Letter:</label>
+          <input type="text" id="firstLetterInput" name="firstLetterInput">
+          <input id="get" type="submit" value="Search" formaction="/get-cocktail-by-letter">
+        </form>
+
+        <!-- Search random -->
+        <form class="getCocktailForm" method="get">
+          <label for="randomInput">Get Random Cocktail:</label>
+          <input id="get" type="submit" value="Search" formaction="/get-cocktail-random">
+        </form>
+
+      </div>
+
+      <!-- Meal area -->
+      <div class="input-boxes">
+      <h2>Meals</h2>
+
+        <!-- Search by name -->
+        <form class="getRecipeFood" method="get">Meal Name:</label>
+          <input type="text" id="nameInput" name="nameInput">
+          <input id="get" type="submit" value="Search" formaction="/get-recipe-by-name">
+        </form>
+
+        <!-- Search by first letter -->
+        <form class="getRecipeForm" method="get">Meal First Letter:</label>
+          <input type="text" id="firstLetterInputFood" name="firstLetterInputFood">
+          <input id="get" type="submit" value="Search" formaction="/get-recipe-by-letter">
+        </form>
+
+        <!-- Search random -->
+        <form class="getRecipeForm" method="get">Get Random Meal:</label>
+          <input id="get" type="submit" value="Search" formaction="/get-recipe-random">
+        </form>
+      </div>
+    </div>
   </div>
-</div>
 </body>
-</div>
-
 </html>

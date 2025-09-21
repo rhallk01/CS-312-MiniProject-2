@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- import stylesheet -->
     <link rel="stylesheet" href="/styles/main.css">
     <title>Cocktail Compendium</title>
 </head>
 
 <body>
+<!-- header with title and navigation -->
 <div class="header">
     <h1 class="page-title">The Cocktail & Cooking Compendium</h1>
     <nav>
@@ -15,66 +17,89 @@
         <a href="/search">Search</a>
     </nav>
 </div>
+<!-- area with recipes and instructions -->
 <div class="main-content">
     <div class="results-container">
+        <!-- Cocktail area -->
         <div class="response-area">
+            <!-- show instructions for cocktails-->
             <div class="intro">
                 <h2>Your cocktail search results will appear below!</h2>
                 <h3>To search a cocktail recipe, go to the search page</h3>
             </div>
             <hr><br>
+            <!-- show either "No cocktail results found..." or the found cocktails -->
             <% if (content && content.drinks && content.drinks!="no data found") { %>
+                <!-- dynamically load each cocktail in the returned drinks data -->
+                <!-- loop through each dict in drinks -->
                 <% content.drinks.forEach(drink => { %>
                     <div class="cocktail-card">
+                        <!-- show drink name -->
                         <h2><%= drink.strDrink %></h2>
 
+                        <!-- dynamically loop through ingredients -->
                         <h3>Ingredients:</h3>
                         <ul>
                             <% for (let i = 1; i <= 15; i++) {
+                                //get the ingredient
                                 const ingredient = drink[`strIngredient${i}`];
+                                //get the amount
                                 const measure = drink[`strMeasure${i}`];
+                                //if ingredient exists, show cleaned measure (if it exists) and ingredient
                                 if (ingredient) { %>
                             <li><%= measure ? measure.trim() : '' %> <%= ingredient %></li>
                             <% }} %>
                         </ul>
-
+                        //show instructions
                         <h3>Instructions:</h3>
                         <p><%= drink.strInstructions %></p>
                         <hr>
                     </div>
                 <% }) %>
+            //if drinks data doesnt exist or is "no data found", show no results found and prompt another search
             <% } else { %>
                 <p>No cocktail results found, please try another search!</p>
             <% } %>
 
         </div>
-
+        // Meal area
         <div class="response-area">
+            <%# show instructions for meals %>
             <div class="intro">
                 <h2>Your meal recipe search results will appear below!</h2>
                 <h3>To search a meal recipe, go to the search page</h3>
             </div>
             <hr><br>
+            <%# show either "No meal results found..." or the found meals %>
                 <% if (recipe && recipe.meals && recipe.meals!="no data found") { %>
+                <%# dynamically load each meal in the returned meal data %>
+                <%# loop through each dict in meal %>
                     <% recipe.meals.forEach(meal => { %>
-                        <div class="cocktail-card">
+                        <div class="meal-card">
+                            <%# show meal name %>
                             <h2><%= meal.strMeal %></h2>
 
+                            <%# dynamically loop through ingredients %>
                             <h3>Ingredients:</h3>
                             <ul>
                                 <% for (let i = 1; i <= 15; i++) {
+                                    //get the ingredient
                                     const ingredient = meal[`strIngredient${i}`];
+                                    //get the amount
                                     const measure = meal[`strMeasure${i}`];
+                                    //if ingredient exists, show cleaned measure (if it exists) and ingredient
                                     if (ingredient) { %>
                                 <li><%= measure ? measure.trim() : '' %> <%= ingredient %></li>
                                 <% }} %>
                             </ul>
 
+                            //show instructions
                             <h3>Instructions:</h3>
                             <p><%= meal.strInstructions %></p>
                             <hr>
                         </div>
                     <% }) %>
+                //if meals data doesnt exist or is "no data found", show no results found and prompt another search
                 <% } else { %>
                     <p>No recipe results found, please try another search!</p>
                 <% } %>
